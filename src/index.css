@@ -1,68 +1,111 @@
+@import "tailwindcss";
+
+/*
+   🎓 EduNexus Design System - Color Variables
+   Supports Light 🌞 and Dark 🌙 themes
+ */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    /* ----- Light Theme ----- */
+
+    --color-green: #2BB673;
+    /* Verde Inovação */
+    
+    --color-text: #23272F;
+    /* Texto Principal */
+
+    --color-neutral: #DADADA;
+    /* Cinza Suave */
+
+    --color-bg: #FFFFFF;
+    /* Fundo Claro */
+    
+    --color-bg-soft: #EBEDF0;
+    /* Fundo Suave #0C0C24*/
+
+    --shadow-soft: 0 4px 12px #F4F4F4;
+    --shadow-strong: 0 8px 24px rgba(10, 61, 145, 0.15);
+
+    
+
+
+
+    --edu-color: #8A4FFF;
+    /* Roxo - Edu */
+    --nexus-color: #0077CC;
+    /* Azul - Nexus */
+    --icon-color: #0077CC;
+    /* Ícone do livro */
+
+    /* ---------- Base Colors ---------- */
+    --color-primary: #0A3D91;
+    /* Azul Profundo */
+    --color-secondary: #4A90E2;
+    /* Azul Claro */
+    
+    /* ---------- Gradients ---------- */
+    --gradient-primary: linear-gradient(135deg, #0A3D91, #4A90E2);
+    --gradient-accent: linear-gradient(135deg, #2BB673, #4A90E2);
+
+    /* ---------- Transitions ---------- */
+    --transition-fast: 0.2s ease-in-out;
+    --transition-slow: 0.4s ease-in-out;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/*
+   🌙 Dark Theme
+   (Activated with class="dark" in <html> or <body>)
+ */
+[data-theme="dark"] {
+    /* ----- Dark Theme ----- */
+
+    --color-green: #2BB673;
+    /* Verde Inovação mantém contraste */
+
+    --color-text: #F6F7F9;
+    /* Texto Claro */
+    
+    --color-bg: #23272F;
+    /* Fundo Escuro #0C0C24*/
+    
+    --color-bg-soft: #343A46;
+    /* Fundo Escuro #0C0C24*/
+
+    --color-neutral: #39404D;
+    /* Cinza escuro */
+
+    --shadow-soft: 0 2px 8px #00000066;
+    --shadow-strong: 0 6px 18px #00000099;
+
+
+
+
+    --edu-color: #B28DFF;
+    /* Roxo-claro - Edu */
+    --nexus-color: #4DA8FF;
+    /* Azul-claro - Nexus */
+    --icon-color: #4DA8FF;
+    /* Ícone do livro */
+    --color-primary: #4A90E2;
+    /* Azul Claro vira destaque */
+    --color-secondary: #0A3D91;
+    /* Azul Profundo como base */
+    
+    --gradient-primary: linear-gradient(135deg, #4A90E2, #2BB673);
+    --gradient-accent: linear-gradient(135deg, #2BB673, #0A3D91);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+#root {
+  margin: 0 auto;
+  text-align: center;
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }

@@ -16,31 +16,25 @@ export default function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                {appState === "error" ? (
-                    <Route path="*" element={<ServerError />} />
-                ) : (
-                    <>
-                        <Route path="/" element={<Home />} />
+                <Route path="*" element={<ServerError />} />
+                <>
+                    <Route path="/" element={<Home />} />
 
-                        <Route path="/home" element={<LandingPage />} />
+                    <Route path="/home" element={<LandingPage />} />
 
-                        <Route
-                            path="/candidato/login"
-                            element={<LoginPage />}
-                        />
+                    <Route path="/candidato/login" element={<LoginPage />} />
 
-                        <Route
-                            path="/candidato/registo"
-                            element={<RegistroPage />}
-                        />
+                    <Route
+                        path="/candidato/registo"
+                        element={<RegistroPage />}
+                    />
 
-                        <Route path="/candidato/logout" element={<Logout />} />
+                    <Route path="/candidato/logout" element={<Logout />} />
 
-                        <Route path="/error" element={<ServerError />} />
+                    <Route path="/error" element={<ServerError />} />
 
-                        <Route path="*" element={<NotFound />} />
-                    </>
-                )}
+                    <Route path="*" element={<NotFound />} />
+                </>
             </Routes>
         </BrowserRouter>
     );

@@ -1,19 +1,31 @@
-import PrincipalLayout from "../layouts/PrincipalLayout";
-import escritorioHome from "/img-escritorio-home.svg";
+import { Navigate } from "react-router-dom";
 
-export default function Home() {
+import AuthLayout from "../Layout/AuthLayout";
+import Button from "../components/Button";
+import { useAuth } from "../context/AuthContext";
+import LoaderSpin from "../components/Modal/Loader";
+
+export default function Home({}) {
+    const { user, appState } = useAuth();
+
+    if (!user && (appState !== "loading")) {        
+        return <Navigate to="/home" replace />;
+    }
+
+    if (appState === "loading") {
+        return (
+            <section className="h-[90vh] flex items-center justify-center">
+                <LoaderSpin />
+            </section>
+        );
+    }
+
     return (
-        <>
-            <PrincipalLayout>
-                <section className="h-10/12">
-                    <h1 className="text-5xl font-light text-(--color-primary) text-left">
-                        Onde a aprendizagem encontra o mundo real!
-                    </h1>
-                </section>
-                <section className="h-10/12 pr-9 flex items-center">
-                    <img src={escritorioHome} alt="" />
-                </section>
-            </PrincipalLayout>
-        </>
+        <AuthLayout>
+            <main className=" min-h-screen grid gap-10 mb-8">
+                <h1 className="text-2xl font-bold">Página Principal</h1>
+                <Button>Go</Button>
+            </main>
+        </AuthLayout>
     );
 }

@@ -1,40 +1,44 @@
-import "../index.css";
 import { Link } from "react-router-dom";
 
 export default function Button({
     children,
-    type = "button",
     to,
+    transparent,
     customClass = "",
-    customStyle,
+    border,
     handleClick,
+    disabled,
 }) {
-    if (type === "link") {
+    const base = "cursor-pointer text-center p-2 rounded-[.70rem]";
+
+    const transparentClass = transparent
+        ? "bg-transparent text-(--color-text-primary)"
+        : "bg-(--color-primary) text-(--color-bg-primary)";
+
+    const classButton = `${base} ${transparentClass} ${customClass}`;
+    const borderStyle = transparent && { border: border || "var(--border)" };
+
+    if (to) {
         return (
             <Link
                 to={to}
-                className={
-                    "text-(--color-text) bg-(--color-green) rounded-md p-2 cursor-pointer inline-block " +
-                    customClass
-                }
-                style={customStyle}
-            >
-                
-                {children}
-            </Link>
-        );
-    } else {
-        return (
-            <button
-                className={
-                    "text-(--color-text) bg-(--color-green) rounded-md p-2 cursor-pointer " +
-                    customClass
-                }
-                style={customStyle}
+                className={classButton}
+                style={borderStyle}
                 onClick={handleClick}
             >
                 {children}
-            </button>
+            </Link>
         );
     }
+
+    return (
+        <button
+            className={classButton}
+            style={borderStyle}
+            onClick={handleClick}
+            disabled={disabled}
+        >
+            {children}
+        </button>
+    );
 }

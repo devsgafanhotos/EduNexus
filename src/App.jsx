@@ -1,27 +1,43 @@
+import { useReducer } from "react";
+
 import "./index.css";
-import Home from "./pages/Home";
-import Main from "./pages/Main";
-import { AppRefContext } from "./App.context";
+import Alert from "./components/Modal/Alert";
+import { DispatchAlert } from "./context/AlertContext";
+import AppRoutes from "./partials/AppRoutes";
 
-import { useRef } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AuthProvider from "./context/AuthContext";
 
-function App() {
-    const appRef = useRef(null);
+function alertRedutor(state, action) {
+    switch (action.type) {
+        case "SHOW":
+            return {
+                text: action.text,
+                alertType: action.alertType || "done",
+                show: true,
+            };
 
-    return (
-        <div ref={appRef}>
-            <AppRefContext value={appRef}>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Main />} />
-                        
-                        <Route path="/home" element={<Home />} />
-                    </Routes>
-                </BrowserRouter>
-            </AppRefContext>
-        </div>
-    );
+        case "HIDE":
+            return { ...state, show: false };
+        default:
+            return state;
+    }
 }
 
-export default App;
+export default function App() {
+    const [alertProps, dispatchAlert] = useReducer(alertRedutor, {
+        text: "",
+        alertType: "done", // warning || error || done
+        show: false, // true || false
+    });
+
+    return (
+        <DispatchAlert.Provider value={dispatchAlert}>
+            <AuthProvider>
+                <Alert show={alertProps.show} alertType={alertProps.alertType}>
+                    {alertProps.text}
+                </Alert>
+                <AppRoutes />
+            </AuthProvider>
+        </DispatchAlert.Provider>
+    );
+}

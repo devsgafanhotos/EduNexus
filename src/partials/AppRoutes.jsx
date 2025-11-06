@@ -16,8 +16,6 @@ export default function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="*" element={<ServerError />} />
-                <>
                     <Route path="/" element={<Home />} />
 
                     <Route path="/home" element={<LandingPage />} />
@@ -34,7 +32,6 @@ export default function AppRoutes() {
                     <Route path="/error" element={<ServerError />} />
 
                     <Route path="*" element={<NotFound />} />
-                </>
             </Routes>
         </BrowserRouter>
     );

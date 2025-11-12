@@ -46,14 +46,22 @@ export default function LoginPage({}) {
         setUsuario({ ...usuario, [e.target.name]: e.target.value });
     }
 
+    if (state === "loging") {
+        return (
+            <section className="h-[90vh] flex items-center justify-center col-span-2">
+                <LoaderBounce />
+            </section>
+        );
+    }
+
     if (state === "done" || user) {
         return <Navigate to="/" replace />;
     }
 
     return (
         <SimpleLayout>
-            <main id="simpleMain">
-                <Card custonClass={"sm:w-[400px] w-[320px] m-auto shadow-2xl"}>
+            <main className="h-[75vh] sm:h-[80vh] flex items-center justify-center">
+                <Card custonClass={"sm:w-[400px] w-[310px] m-auto shadow-2xl"}>
                     <h1 className="text-3xl mb-4">Login</h1>
                     <Forma handleSubmit={handleSubmit} textButton="Entrar">
                         <Input
@@ -74,7 +82,8 @@ export default function LoginPage({}) {
                             handleChange={(e) => handleChange(e)}
                         />
                         <Link to={"/candidato/redefinir-senha"}>
-                            Esqueceu a senha? <span className="underline pl-1">Redefinir.</span>
+                            Esqueceu a senha?{" "}
+                            <span className="underline pl-1">Redefinir.</span>
                         </Link>
                     </Forma>
                 </Card>

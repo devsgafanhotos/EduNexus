@@ -1,14 +1,9 @@
 import { Link } from "react-router-dom";
-import {
-    FaLinkedin,
-    FaDiscord,
-    FaGithub,
-} from "react-icons/fa";
+import { FaLinkedin, FaDiscord, FaGithub } from "react-icons/fa";
 
-export default function Footer(authHeader) {
+export default function Footer() {
     return (
-        <footer className=" text-(--color-text-muted) p-4 pr-2 flex flex-col sm:grid gap-3.5 justify-between sm:items-center sm:grid-cols-2">
-            
+        <footer className="text-(--color-text-muted) p-4 pr-2 flex flex-col  gap-3.5 justify-between ">
             <div className="col-span-2 text-(--color-border) flex justify-center mb-5">
                 <hr className="w-10/12" />
             </div>
@@ -22,6 +17,10 @@ export default function Footer(authHeader) {
                     ipsam iure recusandae fugit dolore officia assumenda, aut
                     officiis modi similique temporibus iste ea consectetur quod
                     magnam tenetur, nostrum, impedit cumque!
+                </p>
+                <p className="hidden">
+                    Não guarde conhecimento, ele é livre compartilhe o seu e
+                    veja ele se espalhar pelo mundo!
                 </p>
             </div>
             <div>

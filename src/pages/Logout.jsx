@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import Loader from "../components/Modal/Loader";
+import { LoaderBounce } from "../components/Modal/Loader";
 
 export default function Logout() {
     const [state, setState] = useState("loading");
@@ -27,8 +27,8 @@ export default function Logout() {
 
     if (state === "loading") {
         return (
-            <section className="h-screen flex items-center justify-center flex-col gap-8">
-                <Loader />
+            <section className="h-[90vh] flex items-center justify-center col-span-2">
+                <LoaderBounce />
             </section>
         );
     }

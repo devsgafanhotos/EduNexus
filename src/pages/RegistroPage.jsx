@@ -8,11 +8,12 @@ import { DispatchAlert } from "../context/AlertContext";
 import { showAlert } from "../utils/alertActions";
 import Forma, { Input } from "../components/Form";
 import { useAuth } from "../context/AuthContext";
+import { LoaderBounce } from "../components/Modal/Loader";
 
 export default function RegistroPage({}) {
     const dispatchAlert = useContext(DispatchAlert);
     const [state, setState] = useState("typing");
-    const { api } = useAuth();
+    const { api, login, user } = useAuth();
 
     const [usuario, setUsuario] = useState({
         email: "",
@@ -46,14 +47,24 @@ export default function RegistroPage({}) {
 
         setFormState("submiting");
 
+        const Login = async (data) => {
+            const res = await login("/candidato/login", data);
+
+            if (res.success) {
+                setState("done");
+                setFormState("done");
+            } else {
+                setState("typing");
+                setFormState("typing");
+            }
+        };
+
         const RegistarSe = async () => {
             try {
                 const res = await api.post("/candidato/registo", usuario);
-
-                setState("done");
-                setFormState("done");
-
                 showAlert(dispatchAlert, res.data.message);
+                setState("loging");
+                Login(usuario);
 
                 return res.data;
             } catch (error) {
@@ -76,14 +87,22 @@ export default function RegistroPage({}) {
         setUsuario({ ...usuario, [e.target.name]: e.target.value });
     }
 
-    if (state === "done") {
-        return <Navigate to="/candidato/login" replace />;
+    if (state === "done" || user) {
+        return <Navigate to="/" replace />;
+    }
+
+    if (state === "loging") {
+        return (
+            <section className="h-[90vh] flex items-center justify-center col-span-2">
+                <LoaderBounce />
+            </section>
+        );
     }
 
     return (
         <SimpleLayout>
-            <main id="simpleMain">
-                <Card custonClass={"sm:w-[400px] w-[340px] m-auto shadow-2xl"}>
+            <main className="h-[75vh] sm:h-[80vh] flex items-center justify-center">
+                <Card custonClass={"sm:w-[400px] w-[310px] m-auto shadow-2xl"}>
                     <h1 className="text-3xl mb-4">Cadastro</h1>
                     <Forma
                         handleSubmit={handleSubmit}

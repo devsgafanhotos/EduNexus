@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 
 import Button from "../components/Button";
 import Card from "../components/Card";
-import Loader from "../components/Modal/Loader";
+import { LoaderBounce } from "../components/Modal/Loader";
 import { useAuth } from "../context/AuthContext";
 import PrincipalLayout from "../Layout/PrincipalLayout";
 
@@ -15,23 +15,23 @@ export default function LandingPage({}) {
 
     if (appState === "loading") {
         return (
-            <section className="h-screen flex items-center justify-center flex-col gap-8">
-                <Loader />
+            <section className="h-[90vh] flex items-center justify-center col-span-2">
+                <LoaderBounce />
             </section>
         );
     }
 
     return (
         <PrincipalLayout>
-            <main className="min-h-lvh grid gap-10 mb-8">
+            <main className="grid gap-10 mb-8">
                 <Card
                     custonClass={
-                        "grid items-center md:grid-cols-2 ml-5 mr-5 mt-5 lg:ml-18 lg:mr-18"
+                        "grid items-center ml-5 mr-5 mt-5 gap-5 p-3 lg:ml-10 lg:mr-10 lg:grid-cols-2"
                     }
                 >
                     <div className="grid gap-5">
                         <div
-                            className="bg-(--color-primary-soft) text-(--color-text-secondary) font-bold w-[180px] text-center text-sm p-1 rounded-4xl"
+                            className="bg-(--color-primary) text-(--color-text-primary) font-bold w-[180px] text-center text-sm p-1 rounded-4xl animate-pulse z-3"
                             style={{ border: "var(--border)" }}
                         >
                             Caminhos personalisados
@@ -40,12 +40,12 @@ export default function LandingPage({}) {
                             Sua trilha de aprendizado conectada às melhores
                             oportunidades
                         </h1>
-                        <p className="text-(--color-text-muted)">
+                        <Text>
                             Combine habilidades, cursos e vagas em um só lugar.
                             Receba recomendações curriculares inteligentes e
                             encontre a oportunidade ideal para transformar sua
                             carreira com insights em tempo real do mercado.
-                        </p>
+                        </Text>
                         <div className="h-[50px] flex gap-4 p-1 justify-center">
                             <Button
                                 to={"/candidato/login"}
@@ -72,77 +72,71 @@ export default function LandingPage({}) {
                     </aside>
                 </Card>
 
-                <section className="grid gap-4 lg:grid-cols-3 mt-4 ml-5 mr-5 lg:ml-18 lg:mr-18">
-                    <div className="flex justify-between lg:col-span-3 mb-4">
+                <section className="grid gap-4 xl:grid-cols-3 mt-4 ml-5 mr-5 lg:ml-10 lg:mr-10">
+                    <div className="flex gap-3 justify-between xl:col-span-3 mb-4">
                         <h2 className="text-2xl font-semibold">
                             O que você encontra aqui?
                         </h2>
-                        <p className="hidden md:block max-w-[500px]">
+                        <Text custonClass={"hidden xl:block max-w-[500px]"}>
                             Uma plataforma completa para evoluir suas
                             competências, planejar sua jornada de aprendizado e
                             ser encontrado pelas melhores empresas.
-                        </p>
+                        </Text>
                     </div>
-                    <Card custonClass={"flex rounded-xl items-center"}>
+                    <CardLearn>
                         <div
-                            className="w-12 bg-(--color-accent) text-2xl font-bold p-1 rounded-[.70rem]"
+                            className={`w-12 bg-(--color-accent) text-2xl text-center font-bold p-1 rounded-[.70rem]`}
                             style={{ border: "var(--border)" }}
                         >
                             RC
                         </div>
                         <aside>
-                            <h3 className="text-2xl font-semibold">
-                                Recomendação
-                            </h3>
-                            <p className="text-(--color-text-muted)">
+                            <TitleSection>Recomendação</TitleSection>
+                            <Text>
                                 Lorem ipsum dolor sit amet consectetur
                                 adipisicing elit. Tempore sit eum omnis
-                            </p>
+                            </Text>
                         </aside>
-                    </Card>
-                    <Card custonClass={"flex rounded-xl items-center"}>
+                    </CardLearn>
+                    <CardLearn>
                         <div
-                            className="w-12 bg-(--color-text-muted) text-2xl font-bold p-1 rounded-[.70rem]"
+                            className={`w-12 bg-(--color-text-muted) text-2xl text-center font-bold p-1 rounded-[.70rem]`}
                             style={{ border: "var(--border)" }}
                         >
                             BV
                         </div>
                         <aside>
-                            <h3 className="text-2xl font-semibold">
-                                Recomendação
-                            </h3>
-                            <p className="text-(--color-text-muted)">
+                            <TitleSection>Recomendação</TitleSection>
+                            <Text>
                                 Lorem ipsum dolor sit amet consectetur
                                 adipisicing elit. Tempore sit eum omnis
-                            </p>
+                            </Text>
                         </aside>
-                    </Card>
-                    <Card custonClass={"flex rounded-xl items-center"}>
+                    </CardLearn>
+                    <CardLearn>
                         <div
-                            className="w-12 bg-(--color-info) text-2xl font-bold p-1 rounded-[.70rem]"
+                            className={`w-12 bg-(--color-info) text-2xl text-center font-bold p-1 rounded-[.70rem]`}
                             style={{ border: "var(--border)" }}
                         >
                             AC
                         </div>
                         <aside>
-                            <h3 className="text-2xl font-semibold">
-                                Recomendação
-                            </h3>
-                            <p className="text-(--color-text-muted)">
+                            <TitleSection>Recomendação</TitleSection>
+                            <Text>
                                 Lorem ipsum dolor sit amet consectetur
                                 adipisicing elit. Tempore sit eum omnis
-                            </p>
+                            </Text>
                         </aside>
-                    </Card>
+                    </CardLearn>
                 </section>
 
-                <section className="grid gap-4 ml-5 mr-5 lg:ml-18 lg:mr-18">
-                    <Card custonClass={"flex flex-col rounded-xl"}>
-                        <h3 className="text-2xl font-semibold">Recomendação</h3>
-                        <p className="text-(--color-text-muted)">
+                <section className="grid gap-4 ml-5 mr-5 lg:ml-10 lg:mr-10">
+                    <Card custonClass={"flex gap-2 flex-col rounded-xl"}>
+                        <TitleSection>Recomendação</TitleSection>
+                        <Text>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Tempore sit eum omnis
-                        </p>
+                        </Text>
                         <div>
                             <Button customClass="pl-4 pr-4">
                                 Fale conosco
@@ -152,5 +146,29 @@ export default function LandingPage({}) {
                 </section>
             </main>
         </PrincipalLayout>
+    );
+}
+
+export function Text({ children, custonClass }) {
+    return (
+        <p className={`text-(--color-text-muted) ${custonClass}`}>{children}</p>
+    );
+}
+
+export function TitleSection({ children, custonClass }) {
+    return (
+        <h3 className={`text-2xl font-semibold ${custonClass}`}>{children}</h3>
+    );
+}
+
+function Icone({ text, bgColor }) {
+    return <div>{text}</div>;
+}
+
+function CardLearn({ children }) {
+    return (
+        <Card custonClass={`flex gap-2 rounded-xl items-center`}>
+            {children}
+        </Card>
     );
 }

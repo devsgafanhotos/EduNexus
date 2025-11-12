@@ -20,7 +20,7 @@ export default function Forma({ children, handleSubmit, textButton }) {
 
     return (
         <form
-            className="flex flex-col gap-3 pt-3 pb-3"
+            className="flex flex-col gap-4"
             onSubmit={(e) => {
                 handleSubmit(e, setFormState);
             }}

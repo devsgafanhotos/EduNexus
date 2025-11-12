@@ -9,6 +9,8 @@ import ServerError from "../pages/ServerError";
 
 import { useAuth } from "../context/AuthContext";
 import RegistroPage from "../pages/RegistroPage";
+import Recomendacao from "../pages/Recomendacao";
+import Teste from "../pages/Teste";
 
 export default function AppRoutes() {
     const { appState } = useAuth();
@@ -17,6 +19,8 @@ export default function AppRoutes() {
         <BrowserRouter>
             <Routes>
                     <Route path="/" element={<Home />} />
+
+                    <Route path="/candidato/recomendacao" element={<Recomendacao />} />
 
                     <Route path="/home" element={<LandingPage />} />
 
@@ -30,6 +34,8 @@ export default function AppRoutes() {
                     <Route path="/candidato/logout" element={<Logout />} />
 
                     <Route path="/error" element={<ServerError />} />
+
+                    <Route path="/teste" element={<Teste />} />
 
                     <Route path="*" element={<NotFound />} />
             </Routes>

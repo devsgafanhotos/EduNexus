@@ -1,5 +1,5 @@
-import Button from "../components/Button";
-import Header from "../partials/Header";
+import { FaSignInAlt } from "react-icons/fa";
+import Header, { ItemMenu, Title } from "../partials/Header";
 
 export default function SimpleLayout({ children }) {
     return (
@@ -7,21 +7,15 @@ export default function SimpleLayout({ children }) {
             <Header
                 navOptionsMenu={
                     <>
-                        <Button
-                            to={"/candidato/login"}
-                            transparent={true}
-                            customClass="text-(--color-text-primary-white) w-full sm:w-auto"
-                            border={"var(--border-dark)"}
-                        >
-                            Entrar
-                        </Button>
+                        <ItemMenu to={"/candidato/login"}>
+                            <FaSignInAlt />
+                                Entrar
+                        </ItemMenu>
 
-                        <Button
-                            to={"/candidato/registo"}
-                            customClass="w-full sm:w-auto"
-                        >
+                        <ItemMenu to={"/candidato/registo"}>
+                            <FaSignInAlt />
                             Começar agora
-                        </Button>
+                        </ItemMenu>
                     </>
                 }
             />

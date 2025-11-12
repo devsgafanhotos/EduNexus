@@ -5,13 +5,8 @@
     src: url(/Lato/Lato-Regular.ttf);
 }
 
-@keyframes rotateInfinite {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+* {
+    font-family: "lato", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 :root {
@@ -32,13 +27,14 @@
     --color-primary: #06b6d4;
     --color-primary-soft: #06b5d4a8;
     --color-primary-strong: #0891b2;
-    --color-primary-sof: #06b5d43f; /*22d3ee*/
+    --color-primary-sof: #06b5d43f;
+    /*22d3ee*/
     --color-secondary: #3b82f6;
     /* cyan-500 */
     /* cyan-600 */
     /* cyan-400 */
     /* blue-500 */
-    
+
     /* ==== Accent & States ==== */
     --color-accent: #6366f1;
     --color-success: #34d399;
@@ -48,9 +44,9 @@
     /* emerald-400 */
     /* teal-500 */
 
-    --color-green: #acff2f;
+    --color-green:  #00c950;
     --color-red: #ff0000;
-    
+
     /* purple-400 */
     /* ==== Text Colors ==== */
     --color-text-primary-white: #f8fafc;
@@ -60,7 +56,7 @@
     /* slate-50 */
     /* slate-200 */
     /* slate-400 */
-    
+
     /* ==== Effects ==== */
     --color-shadow: #0f172a8c;
     /* slate-900 alpha */
@@ -72,42 +68,12 @@
     /* ==== Border ==== */
     --border-dark: 1px solid #ffffff31;
     --border: 1px solid #ffffff31;
-}
-
-* {
-    font-family: "lato", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-#FaSpinner {
-    animation: rotateInfinite 2s infinite linear;
-}
-
-main {
-    position: relative;
-    margin-top: 100px;
-    padding-top: 10px;
-}
-
-#simpleMain {
-    top: 60px;
-    margin-top: 0;
-    padding-top: 0;
-    
-    width: 100vw;
-    height: 90vh;
-    
-    display: flex;
-    position: fixed;
-}
-
-#fullMain {
-    top: 0;
-    margin-top: 0;
-    padding-top: 0;
-    border: none;
+    --modal: #00000080;
 }
 
 [data-theme="dark"] {
     /* ==== Backgrounds ==== */
+    --color-bg-primary-dark:#0f172a;
     --color-bg-primary: #f8fafc;
     /* slate-50 */
     --color-bg-secondary: #f1f5f9;
@@ -152,3 +118,14 @@ main {
     /* ==== Border ==== */
     --border: 1px solid #0f172a27;
 }
+/*
+#root {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 768px) {
+    #root {
+        grid-template-columns: 310px 1fr;
+    }
+}*/

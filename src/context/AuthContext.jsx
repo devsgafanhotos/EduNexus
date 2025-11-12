@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext, useEffect, use } from "react";
 import axios from "axios";
 const apiURL = import.meta.env.VITE_API_URL;
 const AuthContext = createContext(null);
@@ -47,7 +47,7 @@ export default function AuthProvider({ children }) {
         setAccessToken(null);
         showAlert(dispatchAlert, res.data.message);
 
-        return res
+        return res;
     }
 
     // Refresh token automático
@@ -141,12 +141,19 @@ export default function AuthProvider({ children }) {
     }, []);
 
     if (appState === "loading") {
-        <Loader />
+        <Loader />;
     }
 
     return (
         <AuthContext.Provider
-            value={{ user, accessToken, login, logout, appState, api }}
+            value={{
+                user,
+                accessToken,
+                login,
+                logout,
+                appState,
+                api
+            }}
         >
             {children}
         </AuthContext.Provider>

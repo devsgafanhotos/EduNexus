@@ -17,7 +17,7 @@ export default function Logout() {
         Logout();
     }, []);
 
-    if (state === "done") {
+    if (state === "done" || !user) {
         return (
             <>
                 <Navigate to="/home" replace />

@@ -56,7 +56,7 @@ export default function AuthProvider({ children }) {
 
     // Lógica para o logout manual
     async function logout(url = "candidato/logout") {
-        const res = await api.post(url);
+        const res = await api.post(url, { user: user });
         setUser(null);
         setAccessToken(null);
         showAlert(dispatchAlert, res.data.message);

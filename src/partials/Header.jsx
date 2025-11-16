@@ -4,7 +4,14 @@ import MobileDrawer from "./MobileDrawer";
 import { List, ListItemButton } from "@mui/material";
 
 import { useAuth } from "../context/AuthContext";
-import { LuCircleUser, LuLogIn, LuLogOut, LuSearch, LuUserPlus } from "react-icons/lu";
+import {
+    LuCircleUser,
+    LuLogIn,
+    LuLogOut,
+    LuSearch,
+    LuUserPlus,
+} from "react-icons/lu";
+import { LoaderBounce } from "../components/Modal/Loader";
 
 export default function Header() {
     return (
@@ -28,7 +35,16 @@ export function LogoFututePlus({ customClass }) {
 }
 
 export function OptionsMenu() {
-    const { user } = useAuth();
+    const { user, appState } = useAuth();
+
+    if (appState === "loading") {
+        return (
+            <section className="">
+                <LoaderBounce />
+            </section>
+        );
+    }
+
     const getOptionsMenu = () => {
         if (user) {
             return (
@@ -40,7 +56,9 @@ export function OptionsMenu() {
                         key={"Novas recomendações"}
                     >
                         <LuSearch className="mr-3" />
-                        <Link to={"/candidato/recomendacao"}>Novas recomendações</Link>
+                        <Link to={"/candidato/recomendacao"}>
+                            Novas recomendações
+                        </Link>
                     </ListItemButton>
 
                     <ListItemButton
@@ -56,28 +74,28 @@ export function OptionsMenu() {
             );
         }
         return (
-                <>
-                    <ListItemButton
-                        sx={{
-                            borderRadius: 2,
-                        }}
-                        key={"Entrar"}
-                    >
-                        <LuLogIn className="mr-3" />
-                        <Link to={"/candidato/login"}>Entrar</Link>
-                    </ListItemButton>
+            <>
+                <ListItemButton
+                    sx={{
+                        borderRadius: 2,
+                    }}
+                    key={"Entrar"}
+                >
+                    <LuLogIn className="mr-3" />
+                    <Link to={"/candidato/login"}>Entrar</Link>
+                </ListItemButton>
 
-                    <ListItemButton
-                        sx={{
-                            borderRadius: 2,
-                        }}
-                        key={"Começar agora"}
-                    >
-                        <LuUserPlus className="mr-3" />
-                        <Link to={"/candidato/registo"}>Começar agora</Link>
-                    </ListItemButton>
-                </>
-            );
+                <ListItemButton
+                    sx={{
+                        borderRadius: 2,
+                    }}
+                    key={"Começar agora"}
+                >
+                    <LuUserPlus className="mr-3" />
+                    <Link to={"/candidato/registo"}>Começar agora</Link>
+                </ListItemButton>
+            </>
+        );
     };
     const t = <LuCircleUser />;
     return (

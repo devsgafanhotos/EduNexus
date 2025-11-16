@@ -3,18 +3,20 @@ import { SlCalender } from "react-icons/sl";
 import { useAuth } from "../context/AuthContext";
 import { LoaderBounce } from "../components/Modal/Loader";
 import { Navigate } from "react-router-dom";
+import RecomendacaoCard from "./RecomendacaoCard";
 
 export default function ResultadoRecomendacao() {
-    const { buscarRecomendacoes, user, api } = useAuth();
+    const { user, api } = useAuth();
     const [recomendacao, setRecomendacao] = useState("loading");
 
     useEffect(() => {
         const id = window.location.href.split("/")[5];
-
         async function getRecomendacao() {
             try {
-                const res = await api.get(`/agents/recomendacao?r=${id}`);
-                setRecomendacao(res.data.data);
+                const { data } = await api.get(`/agents/recomendacao?r=${id}`);
+                console.log(data.data);
+
+                setRecomendacao(data.data);
             } catch (error) {
                 setRecomendacao("error");
                 console.warn(error.response?.data.message || error.message);
@@ -23,7 +25,6 @@ export default function ResultadoRecomendacao() {
         }
         getRecomendacao();
     }, []);
-
 
     if (!user) {
         return <Navigate to="/candidato/login" replace />;
@@ -54,23 +55,7 @@ export default function ResultadoRecomendacao() {
         );
     }
 
-    return (
-        <div className="min-h-[80vh] p-2 md:p-6">
-            <section className="p-3 shadow mb-8 rounded-xl">
-                <h2 className="flex justify-between items-center text-2xl mb-4">
-                    🔹{recomendacao.area}
-                    <div className="pl-2 flex items-center gap-1 text-(--color-text-muted) text-[.8rem]">
-                        <SlCalender />
-                        <p className="">{recomendacao.data}</p>
-                    </div>
-                </h2>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Aut ratione similique eveniet, voluptas quia odio ea
-                    explicabo accusamus possimus obcaecati nobis rerum qui atque
-                    incidunt ducimus mollitia voluptate! Quo, dolores.
-                </p>
-            </section>
-        </div>
+    return(
+        <RecomendacaoCard dados={recomendacao} />
     );
 }

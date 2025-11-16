@@ -11,7 +11,7 @@ import {
     LuSearch,
     LuUserPlus,
 } from "react-icons/lu";
-import { LoaderBounce } from "../components/Modal/Loader";
+import LoaderSpin from "../components/Modal/Loader";
 
 export default function Header() {
     return (
@@ -39,8 +39,8 @@ export function OptionsMenu() {
 
     if (appState === "loading") {
         return (
-            <section className="">
-                <LoaderBounce />
+            <section className="flex justify-center pt-10">
+                <LoaderSpin />
             </section>
         );
     }

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Navigate } from "react-router-dom";
 
 import Button from "../components/Button";
@@ -21,7 +22,11 @@ export default function LandingPage({}) {
     }
 
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+        >
             <Card
                 custonClass={
                     "grid items-center md:ml-5 md:mr-5 md:mt-5 gap-5 p-3 lg:ml-10 lg:mr-10 lg:grid-cols-2"
@@ -134,11 +139,16 @@ export default function LandingPage({}) {
                         Tempore sit eum omnis
                     </Text>
                     <div>
-                        <Button to={"mailto:devsgafanhotos@gmail.com"} customClass="pl-4 pr-4">Fale conosco</Button>
+                        <Button
+                            to={"mailto:devsgafanhotos@gmail.com"}
+                            customClass="pl-4 pr-4"
+                        >
+                            Fale conosco
+                        </Button>
                     </div>
                 </Card>
             </section>
-        </>
+        </motion.div>
     );
 }
 
@@ -152,10 +162,6 @@ export function TitleSection({ children, custonClass }) {
     return (
         <h3 className={`text-xl font-semibold ${custonClass}`}>{children}</h3>
     );
-}
-
-function Icone({ text, bgColor }) {
-    return <div>{text}</div>;
 }
 
 function CardLearn({ children }) {

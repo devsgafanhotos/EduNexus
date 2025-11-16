@@ -1,20 +1,23 @@
 import { Navigate, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Card from "../components/Card";
 import { useAuth } from "../context/AuthContext";
 import { LoaderBounce } from "../components/Modal/Loader";
 import Forma, { Input } from "../components/Form";
+import { showAlert } from "../utils/alertActions";
+import { DispatchAlert } from "../context/AlertContext";
 
 export default function Recomendacao({}) {
+    const dispatchAlert = useContext(DispatchAlert);
     const { user, appState, api } = useAuth();
+    const [appFormState, setAppFormState] = useState("typing");
+    const [recomendacaoState, setRecomendacaoState] = useState(null);
     const [formData, setFormData] = useState({
-        area: "",
-        nivel: "",
-        localidade: "",
+        interesse: "",
+        nivel_educacao: "",
+        regiao: "",
     });
-    const navigate = useNavigate();
-
 
     function handleSubmit(e, setFormState) {
         e.preventDefault();
@@ -23,18 +26,33 @@ export default function Recomendacao({}) {
 
         const BuscarRecomendacao = async () => {
             try {
-                const res = await api.post("/agents/recomendacao", {formData, user});
+                const { data } = await api.post("/agents/recomendacao", {
+                    formData,
+                    user,
+                });
                 setFormState("done");
-                navigate("/candidato/resultado", { state: { data: res.data } });
+                setAppFormState("done");
+                setRecomendacaoState(
+                    data.recomendacaoCriada,
+                );
             } catch (error) {
-                setFormState("typing");
+                showAlert(
+                    dispatchAlert,
+                    error.response?.data.message || error.message
+                );
+                setFormState("error");
             }
         };
         BuscarRecomendacao();
     }
 
-    if (!user) {
-        return <Navigate to="/home" replace />;
+    if (appFormState === "done") {
+        return (
+            <Navigate
+                to={`/candidato/recomendacao/${recomendacaoState.id}`}
+                replace
+            />
+        );
     }
 
     if (!user) {
@@ -69,19 +87,19 @@ export default function Recomendacao({}) {
                             handleChange={(e) => {
                                 setFormData({
                                     ...formData,
-                                    area: e.target.value,
+                                    interesse: e.target.value,
                                 });
                             }}
-                            value={formData.area}
+                            value={formData.interesse}
                             placeholder={"Qual a sua Área de interesse?"}
                             required={true}
                         />
                         <select
-                            value={formData.nivel}
+                            value={formData.nivel_educacao}
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,
-                                    nivel: e.target.value,
+                                    nivel_educacao: e.target.value,
                                 })
                             }
                             required
@@ -96,11 +114,11 @@ export default function Recomendacao({}) {
                             <option value="mestrado">Mestrado</option>
                         </select>
                         <select
-                            value={formData.localidade}
+                            value={formData.regiao}
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,
-                                    localidade: e.target.value,
+                                    regiao: e.target.value,
                                 })
                             }
                             required
@@ -108,7 +126,7 @@ export default function Recomendacao({}) {
                             style={{ border: "var(--border)" }}
                         >
                             <option disabled value="">
-                                Selecione a Localidade
+                                Selecione a regiao
                             </option>
                             <option value="luanda">Luanda</option>
                             <option value="uige">Uíge</option>

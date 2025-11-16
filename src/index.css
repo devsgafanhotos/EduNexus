@@ -26,7 +26,7 @@
     --color-primary-strong: #0891b2;
     --color-primary-soft: #06b5d43f;
     --color-secondary: #3b82f6;
-    /* cyan-500 */
+    /* cyan-500 style={{ border: "var(--border)" }} */
     /* cyan-600 */
     /* cyan-400 */
     /* blue-500 */
@@ -118,3 +118,7 @@
     --modal: #00000080;
 }
 
+
+html {
+  scroll-behavior: smooth;
+}

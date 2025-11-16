@@ -1,13 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/FUTURO+" href="/img/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FUTURO +</title>
-  </head>
-  <body class="bg-(--color-bg-secondary)">
-    <div id="root" class="sm:h-screen bg-(--color-bg-secondary) text-(--color-text-primary)"></div>
-    <script type="module" src="./src/main.jsx"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/FUTURO+" href="/img/logo.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FUTURO +</title>
+    </head>
+    <body class="bg-(--color-bg-secondary)">
+        <div
+            id="root"
+            class="sm:h-screen bg-(--color-bg-secondary) text-(--color-text-primary)"
+        ></div>
+        <script type="module" src="./src/main.jsx"></script>
+
+        <script
+            src="https://cdn.botpress.cloud/webchat/v3.3/inject.js"
+            defer
+        ></script>
+        <script
+            src="https://files.bpcontent.cloud/2025/11/16/11/20251116111218-7X6QSH7A.js"
+            defer
+        ></script>
+
+        <script>
+            window.botpress.init({
+                botId: "2a504a1f-9d29-4527-bc8b-97457adb4cb6",
+
+                configuration: {
+                    version: "v2",
+
+                    // NOME DO BOT (muda o texto visível no cabeçalho!)
+                    botName: "Atendente Virtual",
+
+                    // DESCRIÇÃO (aparece em alguns modos do widget)
+                    botDescription: "Estou aqui para ajudar você!",
+
+                    // LINKS (opcionais)
+                    website: {
+                        label: "Nosso site",
+                        url: "https://seusite.com",
+                    },
+                    email: { label: "Suporte", address: "suporte@seusite.com" },
+                    phone: { label: "Contato", number: "+55 11 99999-9999" },
+
+                    // VISUAL
+                    color: "#06b6d4", // Cor do tema
+                    variant: "soft", // "soft", "solid" ou "outline"
+                    headerVariant: "solid", // "solid" ou "soft"
+                    themeMode: "light", // "light" ou "dark"
+                    fontFamily: "Lato",
+                    radius: 2.1, // Bordas arredondadas
+
+                    // RODAPÉ
+                    footer: "Feito com ❤️ pela nossa equipe",
+
+                    // SOM
+                    soundEnabled: false,
+
+                    // FEEDBACK
+                    feedbackEnabled: false,
+
+                    // MENSAGEM PROATIVA (balãozinho que aparece sozinho)
+                    proactiveMessageEnabled: true,
+                    proactiveBubbleMessage: "Olá! 👋 Precisa de ajuda?",
+                    proactiveBubbleTriggerType: "afterDelay",
+                    proactiveBubbleDelayTime: 5, // em segundos
+                },
+
+                // CLIENT ID DO SEU BOT
+                clientId: "a03521c1-0aa4-43ed-9cdc-e88793b442e3",
+            });
+        </script>
+
+        <!---
+        <script>
+            window.botpress.init({
+                botId: "2a504a1f-9d29-4527-bc8b-97457adb4cb6",
+                configuration: {
+                    version: "v2",
+                    botName: "Support Assistant",
+                    botDescription: "",
+                    website: {},
+                    email: {},
+                    phone: {},
+                    termsOfService: {},
+                    privacyPolicy: {},
+                    color: "#06b6d4",
+                    variant: "soft",
+                    headerVariant: "solid",
+                    themeMode: "light",
+                    fontFamily: "Lato",
+                    radius: 2.1,
+                    feedbackEnabled: false,
+                    footer: "[âš¡ by Botpress](https://botpress.com/?from=webchat)",
+                    soundEnabled: false,
+                    proactiveMessageEnabled: false,
+                    proactiveBubbleMessage: "Hi! ðŸ‘‹ Need help?",
+                    proactiveBubbleTriggerType: "afterDelay",
+                    proactiveBubbleDelayTime: 10,
+                },
+                clientId: "a03521c1-0aa4-43ed-9cdc-e88793b442e3",
+            });
+        </script>
+        -->
+    </body>
 </html>

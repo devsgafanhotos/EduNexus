@@ -134,7 +134,7 @@ export default function LandingPage({}) {
                         Tempore sit eum omnis
                     </Text>
                     <div>
-                        <Button customClass="pl-4 pr-4">Fale conosco</Button>
+                        <Button to={"mailto:devsgafanhotos@gmail.com"} customClass="pl-4 pr-4">Fale conosco</Button>
                     </div>
                 </Card>
             </section>

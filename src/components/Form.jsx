@@ -74,7 +74,7 @@ export function Input({
 
 export function FormPage({ children }) {
     return (
-        <div className="min-h-[70vh] flex flex-col justify-center">
+        <div className="min-h-[70vh] md:min-h-[95vh] flex flex-col justify-center">
             {children}
         </div>
     );

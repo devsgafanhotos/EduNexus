@@ -2,12 +2,11 @@ import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 import Card from "../components/Card";
-import SimpleLayout from "../Layout/SimpleLayout";
 
 import { DispatchAlert } from "../context/AlertContext";
 import { showAlert } from "../utils/alertActions";
 import { useAuth } from "../context/AuthContext";
-import Forma, { Input } from "../components/Form";
+import Forma, { FormPage, Input } from "../components/Form";
 
 export default function LoginPage({}) {
     const dispatchAlert = useContext(DispatchAlert);
@@ -59,35 +58,33 @@ export default function LoginPage({}) {
     }
 
     return (
-        <SimpleLayout>
-            <main className="h-[75vh] sm:h-[80vh] flex items-center justify-center">
-                <Card custonClass={"sm:w-[400px] w-[310px] m-auto shadow-2xl"}>
-                    <h1 className="text-3xl mb-4">Login</h1>
-                    <Forma handleSubmit={handleSubmit} textButton="Entrar">
-                        <Input
-                            type="email"
-                            placeholder="Email"
-                            name="email"
-                            id="email"
-                            value={usuario.email}
-                            handleChange={(e) => handleChange(e)}
-                        />
+        <FormPage>
+            <Card custonClass={"sm:w-[400px] w-[310px] m-auto shadow-2xl"}>
+                <h1 className="text-3xl mb-4">Login</h1>
+                <Forma handleSubmit={handleSubmit} textButton="Entrar">
+                    <Input
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        id="email"
+                        value={usuario.email}
+                        handleChange={(e) => handleChange(e)}
+                    />
 
-                        <Input
-                            type="password"
-                            placeholder="Senha"
-                            name="senha"
-                            id="senha"
-                            value={usuario.senha}
-                            handleChange={(e) => handleChange(e)}
-                        />
-                        <Link to={"/candidato/redefinir-senha"}>
-                            Esqueceu a senha?{" "}
-                            <span className="underline pl-1">Redefinir.</span>
-                        </Link>
-                    </Forma>
-                </Card>
-            </main>
-        </SimpleLayout>
+                    <Input
+                        type="password"
+                        placeholder="Senha"
+                        name="senha"
+                        id="senha"
+                        value={usuario.senha}
+                        handleChange={(e) => handleChange(e)}
+                    />
+                    <Link to={"/candidato/redefinir-senha"}>
+                        Esqueceu a senha?{" "}
+                        <span className="underline pl-1">Redefinir.</span>
+                    </Link>
+                </Forma>
+            </Card>
+        </FormPage>
     );
 }

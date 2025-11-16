@@ -9,13 +9,18 @@ export default function Forma({ children, handleSubmit, textButton }) {
     let extraInfo;
 
     if (textButton === "Entrar") {
-        extraInfo = <Link to={"/candidato/registo"} className="text-center">
-            Não tens conta? <span className="underline pl-1"> Criar uma.</span>
-        </Link>;
+        extraInfo = (
+            <Link to={"/candidato/registo"} className="text-center">
+                Não tens conta?{" "}
+                <span className="underline pl-1"> Criar uma.</span>
+            </Link>
+        );
     } else if (textButton === "Cadastrar-se") {
-        extraInfo = <Link to={"/candidato/login"} className="text-center">
-            Já tens conta? <span className="underline pl-1"> Entrar.</span>
-        </Link>;
+        extraInfo = (
+            <Link to={"/candidato/login"} className="text-center">
+                Já tens conta? <span className="underline pl-1"> Entrar.</span>
+            </Link>
+        );
     }
 
     return (
@@ -50,6 +55,7 @@ export function Input({
     customClass,
     value,
     handleChange,
+    required,
 }) {
     return (
         <input
@@ -59,8 +65,17 @@ export function Input({
             id={id}
             className={`p-3 pl-4 rounded-3xl outline-none ${customClass}`}
             style={{ border: "var(--border)" }}
+            required={required}
             value={value}
             onChange={(e) => handleChange(e)}
         />
+    );
+}
+
+export function FormPage({ children }) {
+    return (
+        <div className="min-h-[80vh] flex flex-col justify-center">
+            {children}
+        </div>
     );
 }

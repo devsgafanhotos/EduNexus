@@ -8,79 +8,16 @@
 * {
     font-family: "lato", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
 :root {
     /* ==== Backgrounds ==== */
-    --color-bg-primary-dark: #020617;
-    --color-bg-primary: #020617;
-    /* slate-950 */
-    --color-bg-secondary: #0f172a;
-    /* slate-900 */
-    --color-surface: #1e293b;
-    /* slate-800 */
-    --color-surface-soft: #94a3b817;
-    /* slate-400 alpha */
-    --color-border: #ffffff31;
-    /* white 10% */
-
-    /* ==== Brand Colors ==== */
-    --color-primary: #06b6d4;
-    --color-primary-soft: #06b5d4a8;
-    --color-primary-strong: #0891b2;
-    --color-primary-sof: #06b5d43f;
-    /*22d3ee*/
-    --color-secondary: #3b82f6;
-    /* cyan-500 */
-    /* cyan-600 */
-    /* cyan-400 */
-    /* blue-500 */
-
-    /* ==== Accent & States ==== */
-    --color-accent: #6366f1;
-    --color-success: #34d399;
-    --color-info: #14b8a6;
-    --color-highlight: #c084fc;
-    /* indigo-500 */
-    /* emerald-400 */
-    /* teal-500 */
-
-    --color-green:  #00c950;
-    --color-red: #ff0000;
-
-    /* purple-400 */
-    /* ==== Text Colors ==== */
-    --color-text-primary-white: #f8fafc;
-    --color-text-primary: #f8fafc;
-    --color-text-secondary: #e2e8f0;
-    --color-text-muted: #94a3b8;
-    /* slate-50 */
-    /* slate-200 */
-    /* slate-400 */
-
-    /* ==== Effects ==== */
-    --color-shadow: #0f172a8c;
-    /* slate-900 alpha */
-
-    /* ==== Shadow ==== */
-    --shadow-soft: 2px 2px 12px 4px #00000031;
-    --shadow-strong: 2px 2px 24px 6px #06b5d43f;
-
-    /* ==== Border ==== */
-    --border-dark: 1px solid #ffffff31;
-    --border: 1px solid #ffffff31;
-    --modal: #00000080;
-}
-
-[data-theme="dark"] {
-    /* ==== Backgrounds ==== */
-    --color-bg-primary-dark:#0f172a;
+    --color-bg-primary-dark: #0f172a;
     --color-bg-primary: #f8fafc;
     /* slate-50 */
     --color-bg-secondary: #f1f5f9;
     /* slate-100 */
     --color-surface: #e2e8f0;
     /* slate-200 */
-    --color-surface-soft: rgba(148, 163, 184, 0.15);
+    --color-surface-soft: #94a3b826;
     /* slate-400 alpha */
     --color-border: #0f172a1a;
     /* slate-900 with 10% opacity */
@@ -118,14 +55,66 @@
     /* ==== Border ==== */
     --border: 1px solid #0f172a27;
 }
-/*
-#root {
-    display: grid;
-    grid-template-columns: 1fr;
+
+[data-theme="dark"] {
+    /* ==== Backgrounds ==== */
+    --color-bg-primary-dark: #020617;
+    --color-bg-primary: #020617;
+    /* slate-950 */
+    --color-bg-secondary: #0f172a;
+    /* slate-900 */
+    --color-surface: #1e293b;
+    /* slate-800 */
+    --color-surface-soft: #94a3b817;
+    /* slate-400 alpha */
+    --color-border: #ffffff31;
+    /* white 10% */
+
+    /* ==== Brand Colors ==== */
+    --color-primary: #06b6d4;
+    --color-primary-soft: #06b5d4a8;
+    --color-primary-strong: #0891b2;
+    --color-primary-sof: #06b5d43f;
+    /*22d3ee*/
+    --color-secondary: #3b82f6;
+    /* cyan-500 */
+    /* cyan-600 */
+    /* cyan-400 */
+    /* blue-500 */
+
+    /* ==== Accent & States ==== */
+    --color-accent: #6366f1;
+    --color-success: #34d399;
+    --color-info: #14b8a6;
+    --color-highlight: #c084fc;
+    /* indigo-500 */
+    /* emerald-400 */
+    /* teal-500 */
+
+    --color-green: #00c950;
+    --color-red: #ff0000;
+
+    /* purple-400 */
+    /* ==== Text Colors ==== */
+    --color-text-primary-white: #f8fafc;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #e2e8f0;
+    --color-text-muted: #94a3b8;
+    /* slate-50 */
+    /* slate-200 */
+    /* slate-400 */
+
+    /* ==== Effects ==== */
+    --color-shadow: #0f172a8c;
+    /* slate-900 alpha */
+
+    /* ==== Shadow ==== */
+    --shadow-soft: 2px 2px 12px 4px #00000031;
+    --shadow-strong: 2px 2px 24px 6px #06b5d43f;
+
+    /* ==== Border ==== */
+    --border-dark: 1px solid #ffffff31;
+    --border: 1px solid #ffffff31;
+    --modal: #00000080;
 }
 
-@media screen and (min-width: 768px) {
-    #root {
-        grid-template-columns: 310px 1fr;
-    }
-}*/

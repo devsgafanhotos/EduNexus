@@ -1,0 +1,88 @@
+// RecommendationResults.jsx
+import { useLocation } from "react-router-dom";
+import Card from "../components/Card";
+import { LoaderBounce } from "../components/Modal/Loader";
+import { showAlert } from "../utils/alertActions";
+import { DispatchAlert } from "../context/AlertContext";
+import { useContext } from "react";
+
+export default function ResultadoRecomendacao() {
+    const { state } = useLocation();
+    const data = state?.data || {};
+    console.log(data.data);
+    console.log(!data?.data?.recomendacoes);
+
+    const dispatchAlert = useContext(DispatchAlert);
+
+    if (!data?.data?.recomendacoes) {
+        showAlert(dispatchAlert, "Os seus dados estão sendo processados...");
+        return (
+            <section className="h-[90vh] flex items-center justify-center col-span-2">
+                <LoaderBounce />
+            </section>
+        );
+    }
+
+    return (
+        <div className="min-h-[80vh] p-6">
+            <h2 className="text-2xl font-bold text-[#0A3D91] mb-6">
+                Resultados da tua requisição
+            </h2>
+
+            {/* Cursos Recomendados */}
+            <section className="mb-8">
+                <h3 className="text-xl font-semibold mb-3 text-[#4A90E2]">
+                    Teu perfil
+                </h3>
+                <p className="indent-3 p-2 text-justify">
+                    {" "}
+                    {data.data.resumo_geral}
+                </p>
+
+                <h3 className="text-xl font-semibold mb-3 text-[#4A90E2]">
+                    Recomendações de carreira
+                </h3>
+                <p className="indent-3 p-2 text-justify">
+                    {" "}
+                    {data.data.recomendacoes.carreira}
+                </p>
+
+                <h3 className="text-xl font-semibold mb-3 text-[#4A90E2]">
+                    Recomendações de formação
+                </h3>
+                <p className="indent-3 p-2 text-justify">
+                    {" "}
+                    {data.data.recomendacoes.formacao}
+                </p>
+
+                <h3 className="text-xl font-semibold mb-3 text-[#4A90E2]">
+                    Competências a desenvolver
+                </h3>
+                <p className="indent-3 p-2 text-justify">
+                    {" "}
+                    {data.data.recomendacoes.competencias_prioritarias}
+                </p>
+
+                <h3 className="text-xl font-semibold mb-3 text-[#4A90E2]">
+                    Proximos passos para a sua carreira
+                </h3>
+                <p className="indent-3 p-2 text-justify">
+                    {" "}
+                    {data.data.proximos_passos}
+                </p>
+
+                <h3 className="text-xl font-semibold mb-3 text-[#4A90E2]">
+                    Vagas de emprego compativeis.
+                </h3>
+                <section className="grid lg:grid-cols-2 gap-2 p-2 pb-6">
+                    <Card custonClass={"grid rounded-md gap-2 "}>
+                        <p className="font-semibold">{data.data.vagas.vaga1}</p>
+                    </Card>
+                    <Card custonClass={"grid rounded-md gap-2 "}>
+                        <p className="font-semibold">{data.data.vagas.vaga2}</p>
+                    </Card>
+                </section>
+            </section>
+        </div>
+    );
+}

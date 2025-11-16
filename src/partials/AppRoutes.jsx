@@ -1,28 +1,34 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
 import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import Logout from "../pages/Logout";
 import NotFound from "../pages/NotFound";
-import ServerError from "../pages/ServerError";
 
-import { useAuth } from "../context/AuthContext";
 import RegistroPage from "../pages/RegistroPage";
 import Recomendacao from "../pages/Recomendacao";
-import Teste from "../pages/Teste";
+import AppLayout from "../Layout/AppLayout";
+import ResultadoRecomendacao from "../pages/ResultadoRecomendacao";
 
 export default function AppRoutes() {
-    const { appState } = useAuth();
-
     return (
         <BrowserRouter>
-            <Routes>
+            <AppLayout>
+                <Routes>
                     <Route path="/" element={<Home />} />
 
-                    <Route path="/candidato/recomendacao" element={<Recomendacao />} />
-
                     <Route path="/home" element={<LandingPage />} />
+
+                    <Route
+                        path="/candidato/recomendacao"
+                        element={<Recomendacao />}
+                    />
+
+                    <Route
+                        path="/candidato/recomendacao/:id"
+                        element={<ResultadoRecomendacao />}
+                    />
 
                     <Route path="/candidato/login" element={<LoginPage />} />
 
@@ -33,12 +39,9 @@ export default function AppRoutes() {
 
                     <Route path="/candidato/logout" element={<Logout />} />
 
-                    <Route path="/error" element={<ServerError />} />
-
-                    <Route path="/teste" element={<Teste />} />
-
                     <Route path="*" element={<NotFound />} />
-            </Routes>
+                </Routes>
+            </AppLayout>
         </BrowserRouter>
     );
 }

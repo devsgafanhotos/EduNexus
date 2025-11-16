@@ -1,14 +1,15 @@
-import { useState, createContext, useContext, useEffect, use } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
 const apiURL = import.meta.env.VITE_API_URL;
 const AuthContext = createContext(null);
 
 import { DispatchAlert } from "./AlertContext";
 import { showAlert } from "../utils/alertActions";
-import Loader from "../components/Modal/Loader";
+import { LoaderBounce } from "../components/Modal/Loader";
 
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
+    const [recomendacoes, setRecomendacoes] = useState(null);
     const [accessToken, setAccessToken] = useState(null);
     const [appState, setAppState] = useState("loading"); // error || loading || done
     const dispatchAlert = useContext(DispatchAlert);
@@ -36,6 +37,19 @@ export default function AuthProvider({ children }) {
                 error.response?.data.message || error.message,
                 "error"
             );
+            return error;
+        }
+    }
+
+    // Lógica para buscar as recomendações
+    async function buscarRecomendacoes(url = "/agents/recomendacao") {
+        try {
+            const res = await api.get(url);
+
+            setRecomendacoes(res.data.data);
+            return res.data.data;
+        } catch (error) {
+            console.warn(error.response?.data.message || error.message);
             return error;
         }
     }
@@ -138,10 +152,11 @@ export default function AuthProvider({ children }) {
     // Restauramos a sessão ao carregar app
     useEffect(() => {
         restoreSession();
+        buscarRecomendacoes();
     }, []);
 
     if (appState === "loading") {
-        <Loader />;
+        <LoaderBounce />;
     }
 
     return (
@@ -152,7 +167,9 @@ export default function AuthProvider({ children }) {
                 login,
                 logout,
                 appState,
-                api
+                api,
+                recomendacoes,
+                buscarRecomendacoes,
             }}
         >
             {children}

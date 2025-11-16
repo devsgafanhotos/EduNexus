@@ -2,11 +2,10 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import Card from "../components/Card";
-import SimpleLayout from "../Layout/SimpleLayout";
 
 import { DispatchAlert } from "../context/AlertContext";
 import { showAlert } from "../utils/alertActions";
-import Forma, { Input } from "../components/Form";
+import Forma, { FormPage, Input } from "../components/Form";
 import { useAuth } from "../context/AuthContext";
 import { LoaderBounce } from "../components/Modal/Loader";
 
@@ -20,6 +19,7 @@ export default function RegistroPage({}) {
         senha: "",
         senha_conf: "",
         nome: "",
+        telefone: "",
     });
 
     function handleSubmit(e, setFormState) {
@@ -100,51 +100,54 @@ export default function RegistroPage({}) {
     }
 
     return (
-        <SimpleLayout>
-            <main className="h-[75vh] sm:h-[80vh] flex items-center justify-center">
-                <Card custonClass={"sm:w-[400px] w-[310px] m-auto shadow-2xl"}>
-                    <h1 className="text-3xl mb-4">Cadastro</h1>
-                    <Forma
-                        handleSubmit={handleSubmit}
-                        textButton="Cadastrar-se"
-                    >
-                        <Input
-                            placeholder="Nome"
-                            name="nome"
-                            id="nome"
-                            value={usuario.nome}
-                            handleChange={(e) => handleChange(e)}
-                        />
+        <FormPage>
+            <Card custonClass={"sm:w-[400px] w-[310px] m-auto shadow-2xl"}>
+                <h1 className="text-3xl mb-4">Cadastro</h1>
+                <Forma handleSubmit={handleSubmit} textButton="Cadastrar-se">
+                    <Input
+                        placeholder="Nome"
+                        name="nome"
+                        id="nome"
+                        value={usuario.nome}
+                        handleChange={(e) => handleChange(e)}
+                    />
 
-                        <Input
-                            type="email"
-                            placeholder="Email"
-                            name="email"
-                            id="email"
-                            value={usuario.email}
-                            handleChange={(e) => handleChange(e)}
-                        />
+                    <Input
+                        placeholder="Telefone"
+                        name="telefone"
+                        id="telefone"
+                        value={usuario.telefone}
+                        handleChange={(e) => handleChange(e)}
+                    />
 
-                        <Input
-                            type="password"
-                            placeholder="Senha"
-                            name="senha"
-                            id="senha"
-                            value={usuario.senha}
-                            handleChange={(e) => handleChange(e)}
-                        />
+                    <Input
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        id="email"
+                        value={usuario.email}
+                        handleChange={(e) => handleChange(e)}
+                    />
 
-                        <Input
-                            type="password"
-                            placeholder="Confirmar senha"
-                            name="senha_conf"
-                            id="senha_conf"
-                            value={usuario.senha_conf}
-                            handleChange={(e) => handleChange(e)}
-                        />
-                    </Forma>
-                </Card>
-            </main>
-        </SimpleLayout>
+                    <Input
+                        type="password"
+                        placeholder="Senha"
+                        name="senha"
+                        id="senha"
+                        value={usuario.senha}
+                        handleChange={(e) => handleChange(e)}
+                    />
+
+                    <Input
+                        type="password"
+                        placeholder="Confirmar senha"
+                        name="senha_conf"
+                        id="senha_conf"
+                        value={usuario.senha_conf}
+                        handleChange={(e) => handleChange(e)}
+                    />
+                </Forma>
+            </Card>
+        </FormPage>
     );
 }

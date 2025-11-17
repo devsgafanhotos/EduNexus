@@ -30,11 +30,16 @@ export default function Recomendacao({}) {
                     formData,
                     user,
                 });
+
+                const res = await api.post("/agents/registo", {
+                    id: user.id,
+                    interesse: formData.interesse,
+                    recomendacao: data.recomendacaoCriada,
+                });
+
                 setFormState("done");
                 setAppFormState("done");
-                setRecomendacaoState(
-                    data.recomendacaoCriada,
-                );
+                setRecomendacaoState(res.data.recomendacaoCriada);
             } catch (error) {
                 showAlert(
                     dispatchAlert,
@@ -46,7 +51,7 @@ export default function Recomendacao({}) {
         BuscarRecomendacao();
     }
 
-    if (appFormState === "done") {
+    if (appFormState === "done" || recomendacaoState) {
         return (
             <Navigate
                 to={`/candidato/recomendacao/${recomendacaoState.id}`}

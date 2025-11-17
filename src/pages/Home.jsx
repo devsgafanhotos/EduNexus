@@ -7,9 +7,10 @@ import { SlCalender } from "react-icons/sl";
 import { FaPlus } from "react-icons/fa";
 import Card from "../components/Card";
 import { VagasDeEmprego } from "./RecomendacaoCard";
+import { useEffect } from "react";
 
 export default function Home({}) {
-    const { user, appState, recomendacoes } = useAuth();
+    const { user, appState, recomendacoes, buscarRecomendacoes } = useAuth();
 
     if (!user) {
         return <Navigate to="/home" replace />;
@@ -59,7 +60,7 @@ export default function Home({}) {
 
     function EmpregosRecomendados() {
         const listaEmpregos = recomendacoes.length ? (
-            <VagasDeEmprego rec={recomendacoes[0].recomendacao[0]} />
+            <VagasDeEmprego rec={recomendacoes[0].recomendacao} />
         ) : (
             <li
                 className="list-none p-2 rounded-xl hover:scale-101 hover:bg-(--color-surface-soft) transition-all"
@@ -68,13 +69,13 @@ export default function Home({}) {
                 Nenhum emprego ainda!
             </li>
         );
-        
-        return (
-            <>
-                {listaEmpregos}
-            </>
-        );
+
+        return <>{listaEmpregos}</>;
     }
+
+    useEffect(() => {
+        buscarRecomendacoes();
+    }, []);
 
     const getName = (nome) => nome.split(" ")[0];
     return (

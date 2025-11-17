@@ -2,8 +2,29 @@ import { motion } from "framer-motion";
 import { SlCalender } from "react-icons/sl";
 
 export default function RecomendacaoCard({ dados }) {
-    const rec = dados.recomendacao[0];
+    const rec = dados.recomendacao;
+    console.log(rec);
 
+    if (!rec) {
+        return (
+            <div className="max-w-5xl mx-auto p-6 space-y-6">
+                <section className="bg-(--color-bg-secondary) p-3 shadow rounded-xl">
+                    <h2 className="flex justify-between font-semibold items-center text-2xl mb-4">
+                        🔹{dados.titulo}
+                        <div className="flex gap-1.5 text-(--color-text-muted) text-[.8rem]">
+                            <SlCalender />
+                            <p>{dados.data_cadastro}</p>
+                        </div>
+                    </h2>
+                </section>
+                <SectionCard titulo={"Sem conteúdo"}>
+                    <p className="text-gray-700">
+                        Recurso indisponível, tente novamente mais tarde!
+                    </p>
+                </SectionCard>
+            </div>
+        );
+    }
     return (
         <div className="max-w-5xl mx-auto p-6 space-y-6">
             <section className="bg-(--color-bg-secondary) p-3 shadow rounded-xl">
@@ -43,14 +64,56 @@ export default function RecomendacaoCard({ dados }) {
                 <ul className="space-y-2 text-gray-700">
                     <li>
                         Desemprego urbano:{" "}
-                        <strong>
-                            {
-                                rec.resultados.dados_socioeconomicos.indicadores
-                                    .desemprego_urbano_percentual
-                            }
-                            %
-                        </strong>
+                        {
+                            rec.resultados.dados_socioeconomicos.indicadores
+                                .taxa_desemprego
+                        }{" "}
                     </li>
+                    <li>
+                        pib{" "}
+                        {rec.resultados.dados_socioeconomicos.indicadores.pib}
+                    </li>
+
+                    <li>
+                        taxa_crescimento_economico{" "}
+                        {
+                            rec.resultados.dados_socioeconomicos.indicadores
+                                .taxa_crescimento_economico
+                        }
+                    </li>
+
+                    <li>
+                        populacao{" "}
+                        {
+                            rec.resultados.dados_socioeconomicos.indicadores
+                                .populacao
+                        }
+                    </li>
+
+                    <li>
+                        inflacao{" "}
+                        {
+                            rec.resultados.dados_socioeconomicos.indicadores
+                                .inflacao
+                        }
+                    </li>
+
+                    <li>
+                        custo_vida_indice{" "}
+                        {
+                            rec.resultados.dados_socioeconomicos.indicadores
+                                .custo_vida_indice
+                        }
+                    </li>
+
+                    <li>
+                        taxa_emprego{" "}
+                        {
+                            rec.resultados.dados_socioeconomicos.indicadores
+                                .taxa_emprego
+                        }
+                    </li>
+
                     <li>
                         <strong>Setores em alta:</strong>
                         <ul className="list-disc ml-6">
@@ -75,14 +138,25 @@ export default function RecomendacaoCard({ dados }) {
                                 style={{ border: "var(--border)" }}
                             >
                                 <h4 className="font-semibold text-gray-800">
-                                    {curso.nome}
+                                    {curso.curso}
                                 </h4>
                                 <p className="text-gray-600">
-                                    {curso.instituicao}
+                                    {curso.entidade}
                                 </p>
                                 <p className="text-gray-600">
                                     Duração: {curso.duracao} — {curso.tipo}
                                 </p>
+                                <a
+                                    href={
+                                        curso.link ||
+                                        "https://www.linkedin.com/devsgafanhotos?_l=en_US"
+                                    }
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-block mt-3 px-4 py-2 rounded-lg bg-(--color-primary) text-white text-sm"
+                                >
+                                    Ver
+                                </a>
                             </div>
                         )
                     )}
@@ -178,11 +252,14 @@ export function VagasDeEmprego({ rec }) {
                         </p>
 
                         <p className="mt-2 font-medium text-(--color-accent)">
-                            Salário: {vaga.salario_aproximado}
+                            Salário: {vaga.salario_aproximado || "Indisponível"}
                         </p>
 
                         <a
-                            href={vaga.link_candidatura}
+                            href={
+                                vaga.link_candidatura ||
+                                "https://www.linkedin.com/devsgafanhotos?_l=en_US"
+                            }
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block mt-3 px-4 py-2 rounded-lg bg-(--color-primary) text-white text-sm"

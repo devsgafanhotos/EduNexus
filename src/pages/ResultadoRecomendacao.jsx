@@ -14,7 +14,6 @@ export default function ResultadoRecomendacao() {
         async function getRecomendacao() {
             try {
                 const { data } = await api.get(`/agents/recomendacao?r=${id}`);
-                console.log(data.data);
 
                 setRecomendacao(data.data);
             } catch (error) {

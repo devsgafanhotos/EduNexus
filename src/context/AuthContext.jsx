@@ -42,9 +42,10 @@ export default function AuthProvider({ children }) {
     }
 
     // Lógica para buscar as recomendações
-    async function buscarRecomendacoes(url = "/agents/recomendacao") {
+    
+    async function buscarRecomendacoes(url = `/agents/recomendacao?user=${user?.id}`) {
         try {
-            const res = await api.get(url);
+            const res = await api.get(`${url}`);
 
             setRecomendacoes(res.data.data);
             return res.data.data;
@@ -87,6 +88,7 @@ export default function AuthProvider({ children }) {
             setAccessToken(res.data.access_token);
             showAlert(dispatchAlert, res.data.message);
             setAppState("done");
+            buscarRecomendacoes();
 
             return res;
         } catch (err) {
@@ -152,7 +154,6 @@ export default function AuthProvider({ children }) {
     // Restauramos a sessão ao carregar app
     useEffect(() => {
         restoreSession();
-        buscarRecomendacoes();
     }, []);
 
     if (appState === "loading") {

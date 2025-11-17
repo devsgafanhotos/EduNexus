@@ -25,7 +25,7 @@ export default function Home({}) {
     }
 
     function RecomendacoesRecentes() {
-        const listRecomendacoes = recomendacoes.length ? (
+        const listRecomendacoes = recomendacoes?.length ? (
             recomendacoes?.map((r) => {
                 return (
                     <li
@@ -59,7 +59,7 @@ export default function Home({}) {
     }
 
     function EmpregosRecomendados() {
-        const listaEmpregos = recomendacoes.length ? (
+        const listaEmpregos = recomendacoes?.length ? (
             <VagasDeEmprego rec={recomendacoes[0].recomendacao} />
         ) : (
             <li

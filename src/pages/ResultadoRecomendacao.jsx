@@ -13,7 +13,7 @@ export default function ResultadoRecomendacao() {
         const id = window.location.href.split("/")[5];
         async function getRecomendacao() {
             try {
-                const { data } = await api.get(`/agents/recomendacao?r=${id}`);
+                const { data } = await api.get(`/agents/recomendacao?r=${id}&user=${user.id}`);
 
                 setRecomendacao(data.data);
             } catch (error) {
